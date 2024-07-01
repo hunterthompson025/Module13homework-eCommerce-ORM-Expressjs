@@ -5,9 +5,14 @@ const { Category, Product } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
-    const categoryData = await Category.findAll({
-      include: [{ model: Product }],
-    });
+    const categoryData = await Category.findAll(
+      {
+        include: [
+          {
+            model: Product
+          }
+        ],
+      });
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(400).json(err);
@@ -18,7 +23,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: [{ model: Product }],
+      include: [
+        {
+          model: Product
+        }
+      ],
     });
 
     if (!categoryData) {
@@ -33,11 +42,9 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST a new category
-router.post('/', async (req, res) => {
+router.post('/post/', async (req, res) => {
   try {
-    const categoryData = await Category.create({
-      product_id: req.body.product_id,
-    });
+    const categoryData = await Category.create(req.body);
     res.status(200).json(categoryData);
   } catch (err) {
     res.status(400).json(err);
@@ -45,7 +52,7 @@ router.post('/', async (req, res) => {
 });
 
 // UPDATE a category by id
-router.put('/:id', async (req, res) => {
+router.put('/update/:id', async (req, res) => {
   try {
     const categoryData = await Category.update(
       {
@@ -58,14 +65,14 @@ router.put('/:id', async (req, res) => {
         },
       }
     );
-    res.status(200).json(categoryData);
+    res.status(200).json({message: `Category ${req.params.id} updated`});
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
 // DELETE a category
-router.delete('/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   try {
     const categoryData = await Category.destroy({
       where: {
@@ -78,7 +85,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(categoryData);
+    res.status(200).json({message: `Category ${req.params.id} deleted`});
   } catch (err) {
     res.status(500).json(err);
   }
