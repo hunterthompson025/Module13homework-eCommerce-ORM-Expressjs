@@ -76,7 +76,7 @@ router.put('/update/:id', async (req, res) => {
         },
       }
     );
-    res.status(200).json({message: `Tag ${req.body.id} updated`});
+    res.status(200).json({message: `Tag ${req.params.id} updated`});
   } catch (err) {
     res.status(400).json(err);
   }
