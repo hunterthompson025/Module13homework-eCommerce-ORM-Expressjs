@@ -53,7 +53,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // CREATE a tag
-router.post('/post/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const tagData = await Tag.create(req.body);
     res.status(200).json(tagData);
@@ -63,7 +63,7 @@ router.post('/post/', async (req, res) => {
 });
 
 // UPDATE a tag by id
-router.put('/update/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const tagData = await Tag.update(
       {
@@ -82,8 +82,8 @@ router.put('/update/:id', async (req, res) => {
   }
 });
 
-// DELETE a tag
-router.delete('/delete/:id', async (req, res) => {
+// DELETE a tag by id
+router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
       where: {

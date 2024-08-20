@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST a new category
-router.post('/post/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const categoryData = await Category.create(req.body);
     res.status(200).json(categoryData);
@@ -52,7 +52,7 @@ router.post('/post/', async (req, res) => {
 });
 
 // UPDATE a category by id
-router.put('/update/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const categoryData = await Category.update(
       {
@@ -72,7 +72,7 @@ router.put('/update/:id', async (req, res) => {
 });
 
 // DELETE a category
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const categoryData = await Category.destroy({
       where: {
