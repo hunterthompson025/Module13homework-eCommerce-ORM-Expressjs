@@ -59,7 +59,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // create new product
-router.post('/post/', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
 
@@ -82,7 +82,7 @@ router.post('/post/', async (req, res) => {
 });
 
 // update product
-router.put('/update/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
@@ -125,7 +125,7 @@ router.put('/update/:id', (req, res) => {
     });
 });
 
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const productData = await Product.destroy({
       where: {
